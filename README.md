@@ -1,27 +1,28 @@
-# Full-Stack Web Application Template
+# 🍽️ Restaurant Management Platform
 
-A modern, full-stack web application template featuring a two-part architecture: a marketing landing site and a main application with integrated admin dashboard. Built with React, FastAPI, TypeScript, Prisma, and PostgreSQL.
+A modern, full-featured restaurant application with integrated ordering system, table reservations, and admin dashboard. Built with React, FastAPI, TypeScript, Prisma, and PostgreSQL.
 
-![Application Preview](./docs/images/preview.png)
+![Restaurant App Preview](./docs/images/restaurant-preview.png)
 
 ## 🚀 Features
 
-### Two-Part Architecture
-- **Landing Site** (`example.com`): Marketing-focused single-page site
-- **Web Application** (`app.example.com`): Main application with integrated admin
-- **Shared Backend**: Unified FastAPI backend serving both applications
-- **Monorepo Structure**: Organized code with shared packages
+### Restaurant Operations
+- **Customer Landing Page** (`restaurant.com`): Menu browsing, ordering, and reservations
+- **Integrated Admin Dashboard** (`restaurant.com/admin`): Complete restaurant management
+- **Unified Backend**: FastAPI serving both customer and admin features
+- **Mobile-First Design**: Optimized for mobile ordering experience
 
-### Core Features
-- **Modern Tech Stack**: React with Vite, FastAPI, TypeScript, and Tailwind CSS
-- **Authentication**: Clerk authentication with JWT verification
-- **Content Management**: Browse items by categories, featured content showcase
-- **User Collections**: Persistent user selections with real-time updates
-- **Responsive Design**: Mobile-first approach with beautiful animations
-- **Admin Dashboard**: Integrated admin panel at `/admin` routes
-- **Database**: PostgreSQL with Prisma ORM (Python)
-- **Docker Support**: Easy development setup with Docker Compose
-- **Auto Documentation**: Swagger UI and ReDoc for API exploration
+### Core Restaurant Features
+- **Online Food Ordering**: Complete cart, checkout, and order tracking system
+- **Table Reservations**: Real-time availability and booking management
+- **Takeaway Orders**: Scheduled pickup with time slot selection
+- **Catering Services**: Event catering requests and management
+- **Food Planner**: Meal planning with nutritional tracking
+- **Menu Management**: Dynamic menu with categories, variants, and add-ons
+- **Order Processing**: Real-time kitchen display and order tracking
+- **Customer Management**: Profiles, order history, and loyalty program
+- **Analytics Dashboard**: Sales reports, popular items, and performance metrics
+- **Payment Processing**: Multiple payment methods with Stripe integration
 
 ## 📋 Prerequisites
 
@@ -32,65 +33,58 @@ A modern, full-stack web application template featuring a two-part architecture:
 
 ## 🛠️ Tech Stack
 
-### Landing Site (React + Vite)
-- **React 18** - UI library
-- **Vite** - Lightning-fast build tool
-- **TypeScript** - Type safety
+### Restaurant Frontend (React + Vite)
+- **React 18** - UI library with TypeScript
+- **Vite** - Lightning-fast build tool and dev server
 - **shadcn/ui** - Accessible and customizable component library
-- **Tailwind CSS** - Utility-first CSS
-- **Framer Motion** - Smooth animations
-
-### Web Application (React + Vite)
-- **React 18** - UI library
-- **Vite** - Build tool and dev server
-- **TypeScript** - Type safety
-- **shadcn/ui** - Accessible and customizable component library
-- **Tailwind CSS** - Utility-first CSS
-- **React Router v6** - Client-side routing
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router v6** - Client-side routing for SPA
 - **Clerk React** - Authentication UI components
-- **Framer Motion** - Animations
+- **Framer Motion** - Smooth animations and transitions
 - **React Hook Form + Zod** - Form handling and validation
-- **TanStack Query** - Data fetching and caching
-- **Zustand** - State management
-- **Axios** - HTTP client
+- **TanStack Query** - Data fetching, caching, and synchronization
+- **Zustand** - State management for cart and user data
+- **Axios** - HTTP client for API communication
 
-### Backend (FastAPI)
-- **FastAPI** - Modern Python web framework
-- **Pydantic** - Data validation and settings
-- **Prisma** - Database ORM (Python client)
-- **PostgreSQL** - Database
+### Restaurant Backend (FastAPI)
+- **FastAPI** - High-performance Python web framework
+- **Pydantic** - Data validation and settings management
+- **Prisma** - Type-safe database ORM (Python client)
+- **PostgreSQL** - Relational database for restaurant data
 - **Python-Jose[cryptography]** - JWT token verification
-- **HTTPX** - HTTP client for JWKS fetching
-- **Python-Multipart** - File uploads
+- **HTTPX** - HTTP client for external API integration
+- **Python-Multipart** - File uploads for menu images
 - **Pillow** - Image processing and optimization
-- **Uvicorn** - ASGI server
-- **Python-dotenv** - Environment variables
+- **Uvicorn** - ASGI server for production
+- **Python-dotenv** - Environment variables management
+- **WebSockets** - Real-time order updates and notifications
 
-### Shared Packages
-- **@[project]/ui** - Reusable UI components (built on shadcn/ui)
-- **@[project]/utils** - Common utilities
-- **@[project]/types** - Shared TypeScript types
+### Payment & External Services
+- **Stripe** - Payment processing for orders
+- **Twilio** - SMS notifications for order updates
+- **SendGrid** - Email notifications and confirmations
+- **Google Maps API** - Delivery zone mapping and distance calculation
 
-### DevOps
-- **Docker** - Containerization
+### DevOps & Development
+- **Docker** - Containerization for consistent environments
 - **Docker Compose** - Multi-container orchestration
-- **Nginx** - Reverse proxy for subdomain routing
-- **pnpm** - Efficient package management
-- **Turborepo** - Monorepo build system (optional)
-- **ESLint + Prettier** - Code quality
-- **Husky** - Git hooks
+- **Nginx** - Reverse proxy and static file serving
+- **pnpm** - Efficient package management for monorepo
+- **ESLint + Prettier** - Code quality and formatting
+- **Husky** - Git hooks for code quality
+- **GitHub Actions** - CI/CD pipeline automation
 
 ## 🚀 Quick Start
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/[your-project].git
-cd [your-project]
+git clone https://github.com/yourusername/restaurant-app.git
+cd restaurant-app
 ```
 
 ### 2. Install dependencies
 
-#### Using pnpm (Recommended for monorepo)
+#### Using pnpm (Recommended)
 ```bash
 # Install all dependencies
 pnpm install
@@ -98,19 +92,13 @@ pnpm install
 
 #### Or install individually
 
-##### Landing Site
+##### Restaurant Frontend
 ```bash
 cd apps/landing
 npm install
 ```
 
-##### Web Application
-```bash
-cd apps/web
-npm install
-```
-
-##### Backend
+##### Restaurant Backend
 ```bash
 cd apps/backend
 python -m venv venv
@@ -120,175 +108,160 @@ pip install -r requirements.txt
 
 ### 3. Set up environment variables
 ```bash
-# Copy all environment files
+# Copy environment files
 cp .env.example .env
 cp apps/landing/.env.example apps/landing/.env.local
-cp apps/web/.env.example apps/web/.env.local
 cp apps/backend/.env.example apps/backend/.env
 ```
 
-Landing Site `.env.local`:
+Restaurant Frontend `.env.local`:
 ```env
-VITE_API_URL=http://localhost:5000/api
-VITE_APP_URL=http://localhost:5173
+VITE_API_URL=http://localhost:5000/api/v1
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_key
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_key
+VITE_GOOGLE_MAPS_API_KEY=your_maps_api_key
 ```
 
-Web Application `.env.local`:
+Restaurant Backend `.env`:
 ```env
-VITE_API_URL=http://localhost:5000/api
-VITE_CLERK_PUBLISHABLE_KEY=pk_test_Y2xlcmsuZGV2JA  # Clerk dev mode key
-```
-
-Backend `.env`:
-```env
-DATABASE_URL="postgresql://[db_user]:[db_pass]@localhost:5432/[db_name]"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/restaurant_db"
 PORT=5000
-CLERK_JWKS_URL=https://your-app.clerk.accounts.dev/.well-known/jwks.json
+SECRET_KEY="your-super-secret-jwt-key"
+CLERK_JWKS_URL=https://your-restaurant.clerk.accounts.dev/.well-known/jwks.json
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret
+TWILIO_ACCOUNT_SID=your_twilio_sid
+SENDGRID_API_KEY=your_sendgrid_key
 ```
 
-### 4. Build Docker images
+### 4. Start the database
 ```bash
-# Build landing site image
-cd apps/landing
-docker build -t [project]_landing:latest .
-
-# Build web application image
-cd ../web
-docker build -t [project]_web:latest .
-
-# Build backend image
-cd ../backend
-docker build -t [project]_backend:latest .
-```
-
-### 5. Start the database
-```bash
-# From project root
+# From project root - start PostgreSQL with Docker
 docker-compose up -d postgres
+
+# Wait for database to be ready
+sleep 30
 ```
 
-### 6. Generate Prisma Client and Run migrations
+### 5. Set up the database
 ```bash
 cd apps/backend
-prisma generate --schema=./prisma/schema.prisma
-prisma migrate dev --schema=./prisma/schema.prisma
+# Generate Prisma client
+npx prisma generate
+
+# Run database migrations
+npx prisma migrate dev --name restaurant_init
+
+# Seed with sample restaurant data (optional)
+python -m scripts.seed_restaurant_data
 ```
 
-### 7. Seed the database (optional)
-```bash
-cd apps/backend
-python -m scripts.seed
-```
+### 6. Start the development servers
 
-### 8. Start the development servers
-
-#### Using pnpm (All apps)
+#### Option A: Start all services with pnpm
 ```bash
 # From project root
 pnpm dev
 ```
 
-#### Or start individually
+#### Option B: Start services individually
 
-##### Terminal 1 - Backend
+##### Terminal 1 - Restaurant Backend
 ```bash
 cd apps/backend
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 uvicorn main:app --reload --port 5000
 ```
 
-##### Terminal 2 - Landing Site
+##### Terminal 2 - Restaurant Frontend
 ```bash
 cd apps/landing
 npm run dev  # Runs on port 3000
 ```
 
-##### Terminal 3 - Web Application
-```bash
-cd apps/web
-npm run dev  # Runs on port 5173
-```
-
-#### Access Points
-- Landing Site: [http://localhost:3000](http://localhost:3000)
-- Web Application: [http://localhost:5173](http://localhost:5173)
-- Admin Dashboard: [http://localhost:5173/admin](http://localhost:5173/admin)
-- API Documentation: [http://localhost:5000/docs](http://localhost:5000/docs)
-- Alternative API Docs: [http://localhost:5000/redoc](http://localhost:5000/redoc)
+#### Access Your Restaurant App
+- **Restaurant Website**: [http://localhost:3000](http://localhost:3000)
+- **Menu & Ordering**: [http://localhost:3000/menu](http://localhost:3000/menu)
+- **Admin Dashboard**: [http://localhost:3000/admin](http://localhost:3000/admin)
+- **API Documentation**: [http://localhost:5000/docs](http://localhost:5000/docs)
+- **Alternative API Docs**: [http://localhost:5000/redoc](http://localhost:5000/redoc)
 
 ## 📁 Project Structure
 
 ```
-[your-project]/
-├── apps/                          # All applications (monorepo)
-│   ├── landing/                   # Marketing/Landing site
+restaurant-app/
+├── apps/                          # Restaurant applications
+│   ├── landing/                   # Customer-facing restaurant app
 │   │   ├── src/
-│   │   │   ├── components/        # Landing page components
-│   │   │   ├── App.tsx
-│   │   │   └── main.tsx
-│   │   ├── public/                # Static assets
-│   │   └── package.json
-│   ├── web/                       # Main application
-│   │   ├── src/
-│   │   │   ├── components/        # React components
+│   │   │   ├── components/        # UI components
+│   │   │   │   ├── menu/         # Menu browsing components
+│   │   │   │   ├── cart/         # Shopping cart components
+│   │   │   │   ├── order/        # Order management components
+│   │   │   │   ├── reservation/  # Table reservation components
+│   │   │   │   └── admin/        # Admin dashboard components
 │   │   │   ├── pages/            # Page components
-│   │   │   │   └── admin/        # Admin dashboard
-│   │   │   ├── hooks/            # Custom hooks
+│   │   │   ├── hooks/            # Custom React hooks
 │   │   │   ├── services/         # API services
-│   │   │   ├── store/            # Zustand stores
-│   │   │   └── types/            # TypeScript types
-│   │   └── package.json
-│   └── backend/                   # FastAPI application
+│   │   │   ├── stores/           # Zustand state stores
+│   │   │   └── types/            # TypeScript definitions
+│   │   └── public/               # Static assets (logos, images)
+│   └── backend/                   # Restaurant API server
 │       ├── app/
-│       │   ├── api/              # API endpoints
+│       │   ├── api/              # API route handlers
+│       │   │   ├── menu/         # Menu management endpoints
+│       │   │   ├── orders/       # Order processing endpoints
+│       │   │   ├── reservations/ # Reservation endpoints
+│       │   │   ├── admin/        # Admin-only endpoints
+│       │   │   └── auth/         # Authentication endpoints
 │       │   ├── core/             # Core configuration
-│       │   ├── models/           # Pydantic models
-│       │   └── services/         # Business logic
-│       ├── prisma/               # Database schema
-│       └── main.py               # Entry point
-├── packages/                      # Shared packages
-│   ├── ui/                       # Reusable components
-│   ├── utils/                    # Common utilities
-│   └── types/                    # Shared TypeScript types
+│       │   ├── models/           # Pydantic data models
+│       │   └── services/         # Business logic services
+│       ├── prisma/               # Database schema & migrations
+│       ├── scripts/              # Database seeding scripts
+│       └── main.py               # FastAPI entry point
+├── docs/                          # Documentation
+│   ├── restaurant/               # Restaurant-specific docs
+│   │   ├── PROJECT_OVERVIEW.md   # Architecture overview
+│   │   ├── FEATURES.md           # Feature specifications
+│   │   ├── RESTAURANT_DATABASE.md # Database schema
+│   │   ├── RESTAURANT_API.md     # API documentation
+│   │   ├── UI_COMPONENTS.md      # Component library
+│   │   ├── ADMIN_FEATURES.md     # Admin dashboard guide
+│   │   ├── IMPLEMENTATION_GUIDE.md # Step-by-step guide
+│   │   └── QUICK_START.md        # Rapid setup guide
+│   └── original/                 # Original template docs
 ├── docker/                        # Docker configurations
 │   ├── nginx/                    # Nginx reverse proxy
-│   └── volumes/                  # Persistent data
-├── docs/                          # Documentation
-├── docker-compose.yml             # Docker orchestration
-└── pnpm-workspace.yaml           # PNPM workspace config
+│   └── volumes/                  # Persistent data storage
+├── docker-compose.yml             # Development orchestration
+└── pnpm-workspace.yaml           # Monorepo configuration
 ```
 
 ## 📝 Available Scripts
 
 ### Monorepo Scripts (from root)
-- `pnpm dev` - Start all development servers
-- `pnpm build` - Build all applications
+- `pnpm dev` - Start all restaurant services (frontend + backend)
+- `pnpm build` - Build all applications for production
 - `pnpm lint` - Run ESLint on all projects
 - `pnpm format` - Format all code with Prettier
+- `pnpm test` - Run tests across all packages
 
-### Landing Site
-- `npm run dev` - Start development server (port 3000)
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+### Restaurant Frontend (apps/landing)
+- `npm run dev` - Start restaurant app development server (port 3000)
+- `npm run build` - Build for production deployment
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality
+- `npm run type-check` - TypeScript type checking
 
-### Web Application
-- `npm run dev` - Start development server (port 5173)
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-
-### Backend
-- `uvicorn main:app --reload` - Start development server
-- `uvicorn main:app` - Start production server
-- `pytest` - Run tests
-- `black .` - Format code
-- `ruff check .` - Lint code
-- `prisma generate` - Generate Prisma client
-- `prisma migrate dev` - Run database migrations
-- `prisma db push` - Push schema changes
-- `prisma studio` - Open Prisma Studio
-- `python -m scripts.seed` - Seed database
+### Restaurant Backend (apps/backend)
+- `uvicorn main:app --reload` - Start API development server (port 5000)
+- `uvicorn main:app` - Start production API server
+- `pytest` - Run backend tests
+- `black .` - Format Python code
+- `ruff check .` - Lint Python code
+- `npx prisma generate` - Generate Prisma client
+- `npx prisma migrate dev` - Run database migrations
+- `npx prisma studio` - Open database GUI
+- `python -m scripts.seed_restaurant_data` - Seed with sample menu data
 
 ## 🐳 Docker Development
 
@@ -299,163 +272,222 @@ npm run dev  # Runs on port 5173
 cp .env.example .env
 ```
 
-2. **Build Docker images**
+2. **Start all restaurant services**
 ```bash
-# Build all images
-cd apps/landing && docker build -t [project]_landing:latest .
-cd ../web && docker build -t [project]_web:latest .
-cd ../backend && docker build -t [project]_backend:latest .
-```
-
-3. **Start all services**
-```bash
-# From project root
+# From project root - starts everything
 docker-compose up -d
 ```
 
 This will start:
-- PostgreSQL database (port 5432)
-- pgAdmin database GUI (port 5050)
-- Redis cache (port 6379)
-- FastAPI backend (port 5000)
-- Landing site (port 3000)
-- Web application (port 5173)
-- Nginx reverse proxy (port 80)
+- **PostgreSQL database** (port 5432) - Restaurant data storage
+- **Redis cache** (port 6379) - Session and cart caching
+- **Restaurant Backend API** (port 5000) - FastAPI server
+- **Restaurant Frontend** (port 3000) - Customer-facing app
+- **pgAdmin** (port 5050) - Database management interface
 
-4. **Run database migrations**
+3. **Set up restaurant database**
 ```bash
-docker-compose exec backend prisma migrate dev
+# Wait for services to start
+sleep 30
+
+# Run database migrations
+docker-compose exec backend npx prisma migrate dev
+
+# Seed with sample restaurant data
+docker-compose exec backend python -m scripts.seed_restaurant_data
 ```
 
-5. **Seed the database (optional)**
-```bash
-docker-compose exec backend python -m scripts.seed
-```
+4. **Access your restaurant app**
+- Restaurant app: http://localhost:3000
+- Admin dashboard: http://localhost:3000/admin
+- API docs: http://localhost:5000/docs
 
 ### Volume Management
 
-All persistent data is stored in `docker/volumes/`:
-- PostgreSQL data: `docker/volumes/postgres/`
-- Redis data: `docker/volumes/redis/`
-- pgAdmin config: `docker/volumes/pgadmin/`
-- File uploads: `docker/volumes/uploads/`
+All persistent restaurant data is stored in `docker/volumes/`:
+- **PostgreSQL data**: `docker/volumes/postgres/` - Menu items, orders, reservations
+- **Redis data**: `docker/volumes/redis/` - Session data and cart state
+- **pgAdmin config**: `docker/volumes/pgadmin/` - Database GUI settings
+- **File uploads**: `docker/volumes/uploads/` - Menu item images and assets
 
-### Docker Commands
+### Useful Docker Commands
 
 ```bash
-# Build images first (required)
-cd apps/landing && docker build -t [project]_landing:latest .
-cd ../web && docker build -t [project]_web:latest .
-cd ../backend && docker build -t [project]_backend:latest .
-
-# Start services
+# Start all restaurant services
 docker-compose up -d
 
-# View logs
-docker-compose logs -f [service-name]
+# View real-time logs
+docker-compose logs -f backend     # API server logs
+docker-compose logs -f frontend    # React app logs
+docker-compose logs -f postgres    # Database logs
 
-# Stop services
+# Stop all services
 docker-compose down
 
-# Clean all volume data (careful!)
-rm -rf docker/volumes/*
+# Restart specific service
+docker-compose restart backend
 
-# Backup volumes
-tar -czf backup-$(date +%Y%m%d).tar.gz docker/volumes/
+# Clean database (careful - removes all restaurant data!)
+docker-compose down -v
+rm -rf docker/volumes/postgres
 
-# Restore volumes
-tar -xzf backup-20240101.tar.gz
+# Backup restaurant data
+tar -czf restaurant-backup-$(date +%Y%m%d).tar.gz docker/volumes/
 
-# Run with development overrides
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+# Restore from backup
+tar -xzf restaurant-backup-20240101.tar.gz
 
-# Run with production settings
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+# Production deployment
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
-## 🔧 Configuration
+## 🔧 Restaurant Configuration
 
-### Database
-Configure your database connection in backend `.env`:
+### Database Setup
+Configure your restaurant database in backend `.env`:
 ```env
-DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/restaurant_db"
 ```
 
-### Architecture Decision
-This project uses a two-part architecture pattern:
+### Restaurant Architecture
+This project uses a simplified restaurant-focused architecture:
 
-1. **Landing Site** (`example.com`)
-   - Marketing-focused single-page site
-   - Optimized for SEO and conversion
-   - Built with React + Vite for consistency
-   - Can be deployed to Vercel/Netlify
-
-2. **Web Application** (`app.example.com`)
-   - Main user application
+1. **Customer Frontend** (`restaurant.com`)
+   - Menu browsing and online ordering
+   - Table reservations and takeaway orders
+   - User accounts and order history
    - Integrated admin dashboard at `/admin`
-   - Protected routes for authenticated users
-   - Deployed to cloud provider
 
-### Clerk Authentication
-Clerk is used in the web application for user authentication. The backend verifies JWT tokens without Clerk SDK.
+2. **Restaurant Backend API**
+   - Unified FastAPI server for all restaurant operations
+   - Menu management and order processing
+   - Real-time order tracking and notifications
+   - Payment processing and customer management
 
-Web Application:
+### Authentication & Security
+Clerk handles customer authentication with JWT verification:
+
+**Frontend Configuration:**
 ```env
-VITE_CLERK_PUBLISHABLE_KEY=pk_test_Y2xlcmsuZGV2JA
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_restaurant_key
 ```
 
-Backend JWT Verification:
+**Backend JWT Verification:**
 ```env
-CLERK_JWKS_URL=https://your-app.clerk.accounts.dev/.well-known/jwks.json
+CLERK_JWKS_URL=https://your-restaurant.clerk.accounts.dev/.well-known/jwks.json
+SECRET_KEY="your-super-secret-jwt-key"
 ```
 
-Note: The landing site doesn't require authentication. In production, create a Clerk account and update both the publishable key and JWKS URL.
+### Payment Processing
+Stripe integration for order payments:
+```env
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret
+STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable
+```
 
-## 📚 Documentation
+### External Services
+Configure notification services:
+```env
+# SMS notifications for order updates
+TWILIO_ACCOUNT_SID=your_twilio_sid
+TWILIO_AUTH_TOKEN=your_twilio_token
 
-- [Technical Specification](./docs/SPECIFICATION.md) - Detailed technical requirements
-- [Database Schema](./docs/DATABASE.md) - Database design and ERD
-- [API Documentation](./docs/API.md) - API endpoints reference
-- [Architecture](./docs/ARCHITECTURE.md) - System design and architecture
-- [UI Specification](./docs/UI-SPEC.md) - Design system and components
-- [Admin Dashboard](./docs/ADMIN_DASHBOARD.md) - Admin panel documentation
+# Email confirmations
+SENDGRID_API_KEY=your_sendgrid_key
+
+# Delivery zone mapping
+GOOGLE_MAPS_API_KEY=your_maps_api_key
+```
+
+## 📚 Restaurant Documentation
+
+### 🍽️ Restaurant-Specific Guides
+- [**📋 Project Overview**](./docs/restaurant/PROJECT_OVERVIEW.md) - Architecture and system design
+- [**🍕 Features Guide**](./docs/restaurant/FEATURES.md) - Complete feature specifications based on Figma
+- [**🗄️ Database Schema**](./docs/restaurant/RESTAURANT_DATABASE.md) - Restaurant-specific database design
+- [**🌐 API Documentation**](./docs/restaurant/RESTAURANT_API.md) - All restaurant API endpoints
+- [**🎨 UI Components**](./docs/restaurant/UI_COMPONENTS.md) - Component library and design system
+- [**👨‍💼 Admin Features**](./docs/restaurant/ADMIN_FEATURES.md) - Complete admin dashboard guide
+- [**🔧 Implementation Guide**](./docs/restaurant/IMPLEMENTATION_GUIDE.md) - Step-by-step development guide
+- [**⚡ Quick Start**](./docs/restaurant/QUICK_START.md) - 15-minute setup guide
+
+### 📖 Original Template Documentation
+- [General Architecture](./docs/ARCHITECTURE.md) - System design patterns
 - [Deployment Guide](./docs/DEPLOYMENT.md) - Production deployment instructions
+- [UI Specification](./docs/UI-SPEC.md) - Base design system
+- [Admin Dashboard](./docs/ADMIN_DASHBOARD.md) - General admin patterns
 
-## 🧪 Testing
+## 🧪 Testing Your Restaurant App
 
+### Frontend Testing
 ```bash
-# Run unit tests
+cd apps/landing
+
+# Run unit tests for components
 npm run test
 
-# Run e2e tests
+# Run E2E tests for user flows
 npm run test:e2e
 
-# Run with coverage
+# Test with coverage reports
 npm run test:coverage
+
+# Type checking
+npm run type-check
 ```
 
-## 🚀 Deployment
+### Backend Testing
+```bash
+cd apps/backend
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+# Run API tests
+pytest
 
-### Quick Deploy
+# Test specific modules
+pytest tests/test_orders.py
+pytest tests/test_menu.py
 
-#### Landing Site (Vercel)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/[your-project]&root-directory=apps/landing)
+# Run with coverage
+pytest --cov=app tests/
+```
 
-#### Web Application (Vercel)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/[your-project]&root-directory=apps/web)
+### Manual Testing Flows
+1. **Customer Journey**: Browse menu → Add to cart → Checkout → Track order
+2. **Reservation Flow**: Check availability → Book table → Receive confirmation
+3. **Admin Workflow**: Login → Manage menu → Process orders → View analytics
+
+## 🚀 Restaurant Deployment
+
+See [Implementation Guide](./docs/restaurant/IMPLEMENTATION_GUIDE.md) for detailed production deployment.
+
+### Quick Deploy Options
+
+#### Frontend (Vercel)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/restaurant-app&root-directory=apps/landing)
 
 #### Backend (Railway)
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/yourusername/[your-project])
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/yourusername/restaurant-app&root-directory=apps/backend)
 
-## 🤝 Contributing
+#### Full Stack (DigitalOcean)
+- Use Docker Compose with production configuration
+- Set up managed PostgreSQL database
+- Configure domain and SSL certificates
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 🤝 Contributing to Restaurant App
+
+1. Fork the restaurant app repository
+2. Create your feature branch (`git checkout -b feature/new-restaurant-feature`)
+3. Make your changes following the restaurant app patterns
+4. Test your changes with the restaurant workflows
+5. Commit your changes (`git commit -m 'Add new restaurant feature'`)
+6. Push to the branch (`git push origin feature/new-restaurant-feature`)
+7. Open a Pull Request with a detailed description
+
+### Development Guidelines
+- Follow the restaurant domain patterns established in the codebase
+- Add tests for new restaurant features (orders, menu, reservations)
+- Update relevant documentation in `docs/restaurant/`
+- Ensure mobile-first responsive design for customer experience
 
 ## 📄 License
 
@@ -463,9 +495,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Icons from [Heroicons](https://heroicons.com/)
-- Images from [Unsplash](https://unsplash.com/)
+- **Figma Design**: Restaurant app design inspiration
+- **Icons**: [Heroicons](https://heroicons.com/) and [Lucide React](https://lucide.dev/)
+- **Images**: [Unsplash](https://unsplash.com/) for sample food photography
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) component library
+- **Restaurant Inspiration**: Modern food delivery and restaurant management platforms
 
-## 📞 Support
+## 📞 Restaurant Support
 
-For support, email support@[your-domain].com or open an issue in this repository.
+- **Documentation**: Check [restaurant-specific guides](./docs/restaurant/)
+- **Issues**: Create issues for bugs or feature requests
+- **Discussions**: Use GitHub Discussions for restaurant app questions
+- **Email**: support@your-restaurant-domain.com
+
+## 🚀 Ready to Build Your Restaurant App?
+
+1. **Quick Start**: Follow the [15-minute setup guide](./docs/restaurant/QUICK_START.md)
+2. **Full Implementation**: Use the [comprehensive implementation guide](./docs/restaurant/IMPLEMENTATION_GUIDE.md)
+3. **Customize**: Adapt the features to your restaurant's specific needs
+4. **Deploy**: Launch your restaurant's digital ordering platform
+
+**Happy cooking and coding! 🍽️👨‍💻**
