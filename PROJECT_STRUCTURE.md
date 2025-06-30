@@ -1,47 +1,54 @@
-# Project Structure
+# Restaurant App - Project Structure
 
 ## Overview
-This project follows a modern two-part architecture pattern commonly used for medium-sized SaaS applications, with a separate landing/marketing site and a main application that includes admin functionality.
+This restaurant management platform follows a modern two-app architecture pattern optimized for restaurant operations, with a separate marketing landing site and a main restaurant application that includes customer ordering and admin functionality.
 
 ```
-[project-name]/
+restaurant-app/
 │
-├── apps/                          # All applications (monorepo structure)
+├── apps/                          # Restaurant applications (monorepo structure)
 │   ├── landing/                   # Marketing/Landing site (React + Vite)
 │   │   ├── src/                  # Source code
 │   │   │   ├── components/       # Landing page components
-│   │   │   │   ├── Hero.tsx     # Hero section
-│   │   │   │   ├── Features.tsx # Features section
-│   │   │   │   ├── Pricing.tsx  # Pricing section
-│   │   │   │   └── CTA.tsx      # Call-to-action
+│   │   │   │   ├── Hero.tsx     # Hero section with restaurant branding
+│   │   │   │   ├── Features.tsx # Restaurant features showcase
+│   │   │   │   ├── MenuPreview.tsx # Sample menu preview
+│   │   │   │   ├── Testimonials.tsx # Customer testimonials
+│   │   │   │   └── CTA.tsx      # Call-to-action for app signup
 │   │   │   ├── App.tsx          # Main app component
 │   │   │   ├── main.tsx         # Entry point
 │   │   │   └── index.css        # Global styles
-│   │   ├── public/              # Static assets
+│   │   ├── public/              # Static assets (restaurant images)
 │   │   ├── index.html           # HTML template
 │   │   ├── .env.example         # Environment variables template
 │   │   ├── vite.config.ts       # Vite configuration
 │   │   ├── package.json         # Dependencies
 │   │   └── tsconfig.json        # TypeScript config
 │   │
-│   ├── web/                       # Main application (React + Vite)
+│   ├── web/                       # Main restaurant application (React + Vite)
 │   │   ├── src/                  # Source code
 │   │   │   ├── components/       # React components
 │   │   │   │   ├── common/      # Shared UI components
 │   │   │   │   ├── layout/      # App layout components
-│   │   │   │   ├── dashboard/   # Dashboard components
-│   │   │   │   ├── content/     # Content-related components
-│   │   │   │   ├── collections/ # Collection components
-│   │   │   │   └── admin/       # Admin-specific components
+│   │   │   │   ├── menu/        # Menu browsing components
+│   │   │   │   ├── cart/        # Shopping cart components
+│   │   │   │   ├── order/       # Order management components
+│   │   │   │   ├── reservation/ # Table reservation components
+│   │   │   │   ├── customer/    # Customer profile components
+│   │   │   │   └── admin/       # Admin dashboard components
 │   │   │   ├── pages/           # Page components
-│   │   │   │   ├── dashboard/   # User dashboard pages
-│   │   │   │   ├── content/     # Content pages
-│   │   │   │   ├── settings/    # User settings
+│   │   │   │   ├── dashboard/   # Customer dashboard pages
+│   │   │   │   ├── menu/        # Menu browsing pages
+│   │   │   │   ├── order/       # Order management pages
+│   │   │   │   ├── reservation/ # Table reservation pages
+│   │   │   │   ├── customer/    # Customer profile pages
 │   │   │   │   └── admin/       # Admin dashboard pages
 │   │   │   │       ├── Dashboard.tsx      # Admin overview
-│   │   │   │       ├── ItemsManagement.tsx # Content management
-│   │   │   │       ├── UsersManagement.tsx # User management
-│   │   │   │       └── Activities.tsx      # Activity tracking
+│   │   │   │       ├── MenuManagement.tsx # Menu management
+│   │   │   │       ├── OrderManagement.tsx # Order processing
+│   │   │   │       ├── ReservationManagement.tsx # Reservation management
+│   │   │   │       ├── CustomerManagement.tsx # Customer management
+│   │   │   │       └── Analytics.tsx      # Sales analytics
 │   │   │   ├── guards/          # Route protection
 │   │   │   │   ├── AuthGuard.tsx    # Authentication guard
 │   │   │   │   └── AdminGuard.tsx   # Admin role guard
@@ -65,8 +72,12 @@ This project follows a modern two-part architecture pattern commonly used for me
 │       ├── app/                  # Application code
 │       │   ├── api/             # API endpoints
 │       │   │   └── v1/          # API version 1
-│       │   │       ├── public/  # Public endpoints
+│       │   │       ├── public/  # Public endpoints (menu, restaurant info)
 │       │   │       ├── auth/    # Authentication endpoints
+│       │   │       ├── menu/    # Menu management endpoints
+│       │   │       ├── orders/  # Order processing endpoints
+│       │   │       ├── reservations/ # Reservation endpoints
+│       │   │       ├── customers/ # Customer management endpoints
 │       │   │       └── admin/   # Admin-only endpoints
 │       │   ├── core/            # Core configuration
 │       │   ├── models/          # Pydantic models
@@ -125,14 +136,22 @@ This project follows a modern two-part architecture pattern commonly used for me
 │       └── uploads/             # File uploads
 │
 ├── docs/                          # Project documentation
-│   ├── API.md                    # API endpoints documentation
+│   ├── restaurant/               # Restaurant-specific documentation
+│   │   ├── PROJECT_OVERVIEW.md   # Architecture overview
+│   │   ├── FEATURES.md           # Feature specifications
+│   │   ├── RESTAURANT_DATABASE.md # Database schema
+│   │   ├── RESTAURANT_API.md     # API documentation
+│   │   ├── UI_COMPONENTS.md      # Component library
+│   │   ├── ADMIN_FEATURES.md     # Admin dashboard guide
+│   │   ├── IMPLEMENTATION_GUIDE.md # Step-by-step guide
+│   │   └── QUICK_START.md        # Rapid setup guide
+│   ├── API.md                    # General API documentation
 │   ├── ARCHITECTURE.md           # System architecture and design
 │   ├── DATABASE.md               # Database schema and ERD
 │   ├── DEPLOYMENT.md             # Deployment guide
 │   ├── SPECIFICATION.md          # Technical specifications
 │   ├── UI-SPEC.md                # UI/UX design specifications
-│   ├── ADMIN_DASHBOARD.md        # Admin dashboard documentation
-│   └── APPLICATION_STRUCTURE.md  # Application structure guide
+│   └── ADMIN_DASHBOARD.md        # Admin dashboard documentation
 │
 ├── .env.example                   # Docker Compose environment template
 ├── .gitignore                     # Git ignore patterns
@@ -147,31 +166,35 @@ This project follows a modern two-part architecture pattern commonly used for me
 
 ## Architecture Overview
 
-### Two-Part Architecture
-1. **Landing Site** (`[domain].com`)
+### Two-App Restaurant Architecture
+1. **Landing Site** (`restaurant.com`)
    - Marketing and conversion-focused
-   - Simple single-page landing
-   - React + Vite for consistency
-   - Optimized for fast loading
+   - Restaurant branding and showcase
+   - Menu preview and testimonials
+   - Call-to-action for app signup
+   - React + Vite for fast loading
 
-2. **Web Application** (`app.[domain].com`)
-   - Main user application
+2. **Restaurant Web Application** (`app.restaurant.com`)
+   - Main restaurant ordering application
+   - Menu browsing and online ordering
+   - Table reservations and takeaway
+   - Customer dashboard and order history
    - Admin dashboard integrated at `/admin`
    - React + Vite for fast development
    - Protected routes for authenticated users
 
 ### Shared Resources
-- **Backend API**: Serves both landing and web app
-- **Packages**: Shared code between applications
-- **Database**: Single database for all data
+- **Backend API**: Serves both landing and restaurant web app
+- **Database**: Single PostgreSQL database for all restaurant data
+- **External Services**: Stripe (payments), Clerk (auth), Twilio (SMS), SendGrid (email)
 
 ## Directory Purposes
 
 ### `/apps`
-Contains all applications in a monorepo structure:
-- **landing**: Next.js marketing website
-- **web**: React + Vite main application
-- **backend**: FastAPI backend serving both
+Contains all restaurant applications in a monorepo structure:
+- **landing**: React + Vite marketing website for restaurant
+- **web**: React + Vite main restaurant ordering application
+- **backend**: FastAPI backend serving both applications
 
 ### `/packages`
 Shared code between applications:
@@ -191,25 +214,31 @@ Comprehensive project documentation
 
 ### Landing Site
 ```
-[domain].com/                    # Single-page landing
-[domain].com/#features           # Features section (anchor)
-[domain].com/#pricing            # Pricing section (anchor)
-[domain].com/#contact            # Contact section (anchor)
+restaurant.com/                  # Single-page restaurant landing
+restaurant.com/#features         # Features section (anchor)
+restaurant.com/#menu-preview     # Menu preview (anchor)
+restaurant.com/#testimonials     # Customer testimonials (anchor)
+restaurant.com/#contact          # Contact section (anchor)
 ```
 
-### Web Application
+### Restaurant Web Application
 ```
-app.[domain].com/                # App dashboard
-app.[domain].com/login           # Authentication
-app.[domain].com/dashboard       # User dashboard
-app.[domain].com/settings        # User settings
-app.[domain].com/content         # Content management
+app.restaurant.com/              # Restaurant app dashboard
+app.restaurant.com/login         # Authentication
+app.restaurant.com/menu          # Menu browsing
+app.restaurant.com/cart          # Shopping cart
+app.restaurant.com/order         # Order management
+app.restaurant.com/reservation   # Table reservations
+app.restaurant.com/profile       # Customer profile
+app.restaurant.com/order-history # Order history
 
 # Admin Routes (protected)
-app.[domain].com/admin           # Admin dashboard
-app.[domain].com/admin/users     # User management
-app.[domain].com/admin/content   # Content management
-app.[domain].com/admin/analytics # Analytics
+app.restaurant.com/admin         # Admin dashboard
+app.restaurant.com/admin/menu    # Menu management
+app.restaurant.com/admin/orders  # Order processing
+app.restaurant.com/admin/reservations # Reservation management
+app.restaurant.com/admin/customers # Customer management
+app.restaurant.com/admin/analytics # Sales analytics
 ```
 
 ### API Endpoints

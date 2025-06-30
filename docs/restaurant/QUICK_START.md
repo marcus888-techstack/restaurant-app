@@ -44,8 +44,9 @@ pnpm dev
 
 After setup, your app will be available at:
 
-- **Customer Site**: http://localhost:3000
-- **Admin Dashboard**: http://localhost:3000/admin
+- **Landing Site**: http://localhost:3000
+- **Restaurant App**: http://localhost:5173
+- **Admin Dashboard**: http://localhost:5173/admin
 - **API Docs**: http://localhost:5000/docs
 
 ## 🔧 Configuration
@@ -86,11 +87,12 @@ pnpm test:e2e      # End-to-end tests
 
 ## 🎯 Quick Demo
 
-1. **Browse Menu**: Visit http://localhost:3000/menu
-2. **Add Items**: Click "Add to Cart" on menu items
-3. **View Cart**: Click cart icon in header
-4. **Admin Access**: Visit http://localhost:3000/admin
-5. **Manage Orders**: Process orders in admin dashboard
+1. **Landing Site**: Visit http://localhost:3000 for marketing page
+2. **Browse Menu**: Visit http://localhost:5173/menu
+3. **Add Items**: Click "Add to Cart" on menu items
+4. **View Cart**: Click cart icon in header
+5. **Admin Access**: Visit http://localhost:5173/admin
+6. **Manage Orders**: Process orders in admin dashboard
 
 ## 🔍 Troubleshooting
 

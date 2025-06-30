@@ -4,41 +4,47 @@
 
 ```mermaid
 graph TB
-    subgraph "Frontend (React + Vite)"
-        A[Landing Page] --> B[Menu Browser]
-        A --> C[Admin Dashboard]
-        B --> D[Shopping Cart]
-        D --> E[Checkout]
+    subgraph "Landing Site (React + Vite)"
+        A[Marketing Page] --> B[Menu Preview]
+        A --> C[Features Showcase]
+        A --> D[App Signup CTA]
+    end
+    
+    subgraph "Restaurant Web App (React + Vite)"
+        E[Menu Browser] --> F[Shopping Cart]
+        F --> G[Checkout]
+        E --> H[Admin Dashboard]
+        E --> I[Table Reservations]
     end
     
     subgraph "Backend (FastAPI)"
-        F[API Gateway] --> G[Order Service]
-        F --> H[Menu Service]
-        F --> I[Reservation Service]
-        F --> J[User Service]
+        J[API Gateway] --> K[Order Service]
+        J --> L[Menu Service]
+        J --> M[Reservation Service]
+        J --> N[User Service]
     end
     
     subgraph "Database"
-        K[(PostgreSQL)]
+        O[(PostgreSQL)]
     end
     
     subgraph "External Services"
-        L[Stripe Payment]
-        M[Clerk Auth]
-        N[Twilio SMS]
-        O[SendGrid Email]
+        P[Stripe Payment]
+        Q[Clerk Auth]
+        R[Twilio SMS]
+        S[SendGrid Email]
     end
     
-    A --> F
-    C --> F
-    G --> K
-    H --> K
-    I --> K
-    J --> K
-    E --> L
-    F --> M
-    F --> N
-    F --> O
+    A --> J
+    E --> J
+    K --> O
+    L --> O
+    M --> O
+    N --> O
+    G --> P
+    J --> Q
+    J --> R
+    J --> S
 ```
 
 ## 🍽️ Core Features
@@ -149,8 +155,9 @@ flowchart LR
 ```
 
 ## Tech Stack
-- **Frontend**: React 18, Vite, Tailwind, shadcn/ui
-- **Backend**: FastAPI, Prisma, PostgreSQL
+- **Landing Site**: React 18, Vite, Tailwind (apps/landing/)
+- **Restaurant App**: React 18, Vite, Tailwind, shadcn/ui (apps/web/)
+- **Backend**: FastAPI, Prisma, PostgreSQL (apps/backend/)
 - **Auth**: Clerk
 - **Payments**: Stripe
 - **Notifications**: Twilio (SMS), SendGrid (Email)

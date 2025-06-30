@@ -121,6 +121,7 @@ pnpm install
 # Setup environment
 cp .env.example .env
 cp apps/landing/.env.example apps/landing/.env.local
+cp apps/web/.env.example apps/web/.env.local
 cp apps/backend/.env.example apps/backend/.env
 
 # Start database
