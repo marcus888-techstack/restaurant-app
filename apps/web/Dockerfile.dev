@@ -1,4 +1,4 @@
-# Development Dockerfile for React frontend
+# Development Dockerfile for Restaurant Web App
 FROM node:18-alpine
 
 WORKDIR /app

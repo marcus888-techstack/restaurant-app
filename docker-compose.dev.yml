@@ -22,9 +22,19 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 5000 --reload
     restart: "no"  # Don't restart in development
 
-  frontend:
+  landing:
     volumes:
-      - ./apps/frontend:/app
+      - ./apps/landing:/app
+      - /app/node_modules
+      - /app/.vite
+    environment:
+      NODE_ENV: development
+    command: npm run dev -- --host 0.0.0.0 --port 3000
+    restart: "no"  # Don't restart in development
+
+  web:
+    volumes:
+      - ./apps/web:/app
       - /app/node_modules
       - /app/.vite
     environment:

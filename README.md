@@ -7,9 +7,9 @@ A modern, full-featured restaurant application with integrated ordering system, 
 ## 🚀 Features
 
 ### Restaurant Operations
-- **Customer Landing Page** (`restaurant.com`): Menu browsing, ordering, and reservations
-- **Integrated Admin Dashboard** (`restaurant.com/admin`): Complete restaurant management
-- **Unified Backend**: FastAPI serving both customer and admin features
+- **Landing Site** (`restaurant.com`): Marketing and conversion-focused landing page
+- **Restaurant App** (`app.restaurant.com`): Menu browsing, ordering, reservations, and admin dashboard
+- **Unified Backend**: FastAPI serving both landing and web applications
 - **Mobile-First Design**: Optimized for mobile ordering experience
 
 ### Core Restaurant Features
@@ -34,6 +34,8 @@ A modern, full-featured restaurant application with integrated ordering system, 
 ## 🛠️ Tech Stack
 
 ### Restaurant Frontend (React + Vite)
+- **Landing Site** (`apps/landing/`) - Marketing website with React + Vite
+- **Web Application** (`apps/web/`) - Main restaurant app with React + Vite
 - **React 18** - UI library with TypeScript
 - **Vite** - Lightning-fast build tool and dev server
 - **shadcn/ui** - Accessible and customizable component library
@@ -92,9 +94,15 @@ pnpm install
 
 #### Or install individually
 
-##### Restaurant Frontend
+##### Landing Site
 ```bash
 cd apps/landing
+npm install
+```
+
+##### Restaurant Web App
+```bash
+cd apps/web
 npm install
 ```
 
@@ -111,10 +119,11 @@ pip install -r requirements.txt
 # Copy environment files
 cp .env.example .env
 cp apps/landing/.env.example apps/landing/.env.local
+cp apps/web/.env.example apps/web/.env.local
 cp apps/backend/.env.example apps/backend/.env
 ```
 
-Restaurant Frontend `.env.local`:
+Restaurant Apps `.env.local` (both landing and web):
 ```env
 VITE_API_URL=http://localhost:5000/api/v1
 VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_key
@@ -172,16 +181,23 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 uvicorn main:app --reload --port 5000
 ```
 
-##### Terminal 2 - Restaurant Frontend
+##### Terminal 2 - Landing Site
 ```bash
 cd apps/landing
 npm run dev  # Runs on port 3000
 ```
 
+##### Terminal 3 - Restaurant Web App
+```bash
+cd apps/web
+npm run dev  # Runs on port 5173
+```
+
 #### Access Your Restaurant App
-- **Restaurant Website**: [http://localhost:3000](http://localhost:3000)
-- **Menu & Ordering**: [http://localhost:3000/menu](http://localhost:3000/menu)
-- **Admin Dashboard**: [http://localhost:3000/admin](http://localhost:3000/admin)
+- **Landing Site**: [http://localhost:3000](http://localhost:3000)
+- **Restaurant App**: [http://localhost:5173](http://localhost:5173)
+- **Menu & Ordering**: [http://localhost:5173/menu](http://localhost:5173/menu)
+- **Admin Dashboard**: [http://localhost:5173/admin](http://localhost:5173/admin)
 - **API Documentation**: [http://localhost:5000/docs](http://localhost:5000/docs)
 - **Alternative API Docs**: [http://localhost:5000/redoc](http://localhost:5000/redoc)
 
@@ -190,20 +206,38 @@ npm run dev  # Runs on port 3000
 ```
 restaurant-app/
 ├── apps/                          # Restaurant applications
-│   ├── landing/                   # Customer-facing restaurant app
+│   ├── landing/                   # Marketing/Landing site
+│   │   ├── src/
+│   │   │   ├── components/        # Landing page components
+│   │   │   │   ├── Hero.tsx      # Hero section
+│   │   │   │   ├── Features.tsx  # Features section
+│   │   │   │   ├── Pricing.tsx   # Pricing section
+│   │   │   │   └── CTA.tsx       # Call-to-action
+│   │   │   ├── pages/            # Page components
+│   │   │   └── styles/           # Landing-specific styles
+│   │   └── public/               # Static assets
+│   │
+│   ├── web/                       # Main restaurant application
 │   │   ├── src/
 │   │   │   ├── components/        # UI components
+│   │   │   │   ├── common/       # Shared UI components
 │   │   │   │   ├── menu/         # Menu browsing components
 │   │   │   │   ├── cart/         # Shopping cart components
 │   │   │   │   ├── order/        # Order management components
 │   │   │   │   ├── reservation/  # Table reservation components
 │   │   │   │   └── admin/        # Admin dashboard components
 │   │   │   ├── pages/            # Page components
+│   │   │   │   ├── dashboard/    # User dashboard
+│   │   │   │   ├── menu/         # Menu pages
+│   │   │   │   ├── order/        # Order pages
+│   │   │   │   ├── reservation/  # Reservation pages
+│   │   │   │   └── admin/        # Admin pages
 │   │   │   ├── hooks/            # Custom React hooks
 │   │   │   ├── services/         # API services
 │   │   │   ├── stores/           # Zustand state stores
 │   │   │   └── types/            # TypeScript definitions
-│   │   └── public/               # Static assets (logos, images)
+│   │   └── public/               # Static assets
+│   │
 │   └── backend/                   # Restaurant API server
 │       ├── app/
 │       │   ├── api/              # API route handlers
@@ -239,14 +273,21 @@ restaurant-app/
 ## 📝 Available Scripts
 
 ### Monorepo Scripts (from root)
-- `pnpm dev` - Start all restaurant services (frontend + backend)
+- `pnpm dev` - Start all restaurant services (landing + web + backend)
 - `pnpm build` - Build all applications for production
 - `pnpm lint` - Run ESLint on all projects
 - `pnpm format` - Format all code with Prettier
 - `pnpm test` - Run tests across all packages
 
-### Restaurant Frontend (apps/landing)
-- `npm run dev` - Start restaurant app development server (port 3000)
+### Landing Site (apps/landing)
+- `npm run dev` - Start landing site development server (port 3000)
+- `npm run build` - Build for production deployment
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality
+- `npm run type-check` - TypeScript type checking
+
+### Restaurant Web App (apps/web)
+- `npm run dev` - Start restaurant app development server (port 5173)
 - `npm run build` - Build for production deployment
 - `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint for code quality
@@ -282,7 +323,8 @@ This will start:
 - **PostgreSQL database** (port 5432) - Restaurant data storage
 - **Redis cache** (port 6379) - Session and cart caching
 - **Restaurant Backend API** (port 5000) - FastAPI server
-- **Restaurant Frontend** (port 3000) - Customer-facing app
+- **Landing Site** (port 3000) - Marketing website
+- **Restaurant Web App** (port 5173) - Main application
 - **pgAdmin** (port 5050) - Database management interface
 
 3. **Set up restaurant database**
@@ -298,8 +340,9 @@ docker-compose exec backend python -m scripts.seed_restaurant_data
 ```
 
 4. **Access your restaurant app**
-- Restaurant app: http://localhost:3000
-- Admin dashboard: http://localhost:3000/admin
+- Landing site: http://localhost:3000
+- Restaurant app: http://localhost:5173
+- Admin dashboard: http://localhost:5173/admin
 - API docs: http://localhost:5000/docs
 
 ### Volume Management
@@ -350,16 +393,21 @@ DATABASE_URL="postgresql://postgres:password@localhost:5432/restaurant_db"
 ```
 
 ### Restaurant Architecture
-This project uses a simplified restaurant-focused architecture:
+This project uses a two-app restaurant architecture:
 
-1. **Customer Frontend** (`restaurant.com`)
+1. **Landing Site** (`restaurant.com`)
+   - Marketing and conversion-focused
+   - Fast loading single-page site
+   - Call-to-action for app signup
+
+2. **Restaurant Web App** (`app.restaurant.com`)
    - Menu browsing and online ordering
    - Table reservations and takeaway orders
    - User accounts and order history
    - Integrated admin dashboard at `/admin`
 
-2. **Restaurant Backend API**
-   - Unified FastAPI server for all restaurant operations
+3. **Restaurant Backend API**
+   - Unified FastAPI server serving both applications
    - Menu management and order processing
    - Real-time order tracking and notifications
    - Payment processing and customer management
@@ -420,19 +468,21 @@ GOOGLE_MAPS_API_KEY=your_maps_api_key
 ## 🧪 Testing Your Restaurant App
 
 ### Frontend Testing
+
+#### Landing Site
 ```bash
 cd apps/landing
-
-# Run unit tests for components
 npm run test
-
-# Run E2E tests for user flows
 npm run test:e2e
+npm run type-check
+```
 
-# Test with coverage reports
+#### Restaurant Web App
+```bash
+cd apps/web
+npm run test
+npm run test:e2e
 npm run test:coverage
-
-# Type checking
 npm run type-check
 ```
 
