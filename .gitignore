@@ -52,3 +52,33 @@ htmlcov/
 
 # Production builds
 *.production
+
+# pnpm
+.pnpm-store/
+
+# Backend specific
+apps/backend/.env
+apps/backend/uploads/*
+!apps/backend/uploads/.gitkeep
+apps/backend/instance/
+apps/backend/.uv/
+apps/backend/uv.lock
+
+# Frontend specific  
+apps/web/.env.local
+apps/web/dist/
+apps/landing/dist/
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+
+# Backups
+*.bak
+*.backup
